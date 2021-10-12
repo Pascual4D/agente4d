@@ -26,7 +26,7 @@ if (opcion=="Set de DATOS"):
         if (directorio != ".git"):
             for archivo in listdir(directorio):
                 nombre, extencion = os.path.splitext(archivo)
-                if (extencion != ".htm"):
+                if (extencion != ".htm" and extencion in [".gif", ".jpg", ".jpeg", ".bmp", ".png"]):
                     ruta=os.path.join(directorio, archivo)
                     img = Image.open(ruta)
 
