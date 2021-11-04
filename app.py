@@ -8,11 +8,34 @@ from PIL import Image
 with st.sidebar:
     opcion=st.selectbox(
         "Opción",
-        ("Set de DATOS","Compilar","Entrenar","Guardar","Leer","Predecir","Matriz"))
+        ("DataSets","Fuente Original","Compilar","Entrenar","Guardar","Leer","Predecir","Matriz"))
 
-st.write("## Inteligencia Artificial IA4D")
-if (opcion=="Set de DATOS"):
+if (opcion=="DataSets"):
+    st.write("## Agente4D  Image to Image translation")
+    st.write(opcion)
+    col1, col2 = st.columns((2,2))
+    with col1:
+        st.write("## A")
+    with col2:
+        st.write("## B")
 
+    imagenesA=[f for f in listdir('datasets/A') if not isfile(join(f))]
+    for imagen in imagenesA:
+        with col1:
+            ruta=os.path.join('datasets/A/', imagen)
+            img = Image.open(ruta)
+            st.image(img, width=512)
+        with col2:
+            ruta=os.path.join('datasets/B/', imagen)
+            try:
+                img = Image.open(ruta)
+                st.image(img, width=512)
+            except IOError:
+                st.write("Pendiente pos subir",ruta)
+            
+      
+if (opcion=="Fuente Original"):
+    st.write("## Agente4D  Image to Vector translation")
     st.write(opcion)
     col1, col2 = st.columns((2,2))
     with col1:
@@ -45,5 +68,6 @@ if (opcion=="Set de DATOS"):
                         else:
                             html_string = "Pendiente por subir" 
                             components.html(html_string, width=512, height=512)
+
 if (opcion=="Compilar"):
     st.write(opcion)
